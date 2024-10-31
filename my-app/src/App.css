@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+
+
+.del__task__button {
+  width: 50px;
+  height: 50px;
+}
+
+.edit__task__button {
+  width: 50px;
+  height: 50px;
+}
+.task__block {
+  height: 150px;
+  width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: solid 2px rgb(153, 212, 216);
+  border-radius: 25px;
+margin: 10px;
+}
+.text__task {
+  word-break: break-all;
+  width: 500px;
+}
+.button__block {
+  width: 115px;
+}
+
+.user{
+
+  border: solid 2px rgb(216, 168, 153);
+  border-radius: 25px;
+  background-color:green;
+}
