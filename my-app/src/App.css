@@ -37,13 +37,6 @@
   }
 }
 
-
-
-
-
-
-
-
 .del__task__button {
   width: 50px;
   height: 50px;
@@ -53,6 +46,27 @@
   width: 50px;
   height: 50px;
 }
+button {
+  width: 50px;
+  height: 45px;
+  background-color: rgb(153, 212, 216);
+  border-radius: 10px;
+}
+.input__new__task{
+  height: 45px;
+  border-radius: 10px;
+  width: 650px;
+}
+.buttons__filter {
+  height: 60px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  border-radius: 25px;
+  margin: 10px;
+}
 .task__block {
   height: 150px;
   width: 700px;
@@ -61,19 +75,18 @@
   justify-content: space-evenly;
   border: solid 2px rgb(153, 212, 216);
   border-radius: 25px;
-margin: 10px;
+  margin: 10px;
 }
 .text__task {
   word-break: break-all;
   width: 500px;
 }
-.button__block {
-  width: 115px;
-}
 
-.user{
-
+.user {
   border: solid 2px rgb(216, 168, 153);
   border-radius: 25px;
-  background-color:green;
+  background-color: green;
+}
+ul {
+  list-style: none;
 }

@@ -1,6 +1,6 @@
 import { taskType } from "../Molecules/Task";
 
-export let taskItems: taskType[] = [
+export let taskItems1: taskType[] = [
   {
     id: 0,
     text: "0000000000000",

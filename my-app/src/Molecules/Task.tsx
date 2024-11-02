@@ -1,14 +1,15 @@
 import React from "react";
 import Button from "../Atoms/Button";
-import { taskItems } from "../View/view";
+//import { taskItems } from "../View/view";
 //import { delEditTask } from "../Atoms/Button";
 
-export type taskType = {
+
+ export type taskType = {
   id: number;
   text: string;
   isDone: boolean;
 };
-
+/*
 const Task = (props: taskType) => {
   let id = props.id,
     isDone = props.isDone,
@@ -23,7 +24,12 @@ const Task = (props: taskType) => {
         <Button title="edit" id={props.id} />
       </div>
     </li>
-  );
+  ); */
+
+
+
+
+
   /*   return ( 
 
     <div className="task__block" id ={String(id)}>
@@ -35,6 +41,10 @@ const Task = (props: taskType) => {
       </div>
     </div>
   ); */
-};
 
-export default Task;
+
+
+
+//};
+
+//export default Task;
