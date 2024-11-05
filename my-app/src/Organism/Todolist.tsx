@@ -4,10 +4,11 @@ import Search from "../Atoms/Search";
 import Button from "../Atoms/Button";
 import { taskType } from "../Molecules/Task";
 import { filterValueStyle } from "../App";
+import { EditTitle } from "../Molecules/EditTask";
 
 /*  type taskType = {
   id: number;
-  text: string;
+  title: string;
   isDone: boolean;
 }; */
 
@@ -16,9 +17,11 @@ type PropsType = {
   tasks: taskType[];
   removeTask: (id: number) => void;
   changeFilter: (val: filterValueStyle) => void;
-  addTask: (text: string) => void;
+  addTask: (title: string) => void;
   changeStatus: (id: number) => void;
   filter: filterValueStyle;
+  changeTaskTitle: (id: number, newTitle:string) => void;
+  //userWho:any;
 };
 
 export function TodoList(props: PropsType) {
@@ -55,7 +58,10 @@ export function TodoList(props: PropsType) {
 
   return (
     <div className="wrapper">
-      <h3> Tasks of User _____ {props.user}</h3>
+      <h3>
+        Tasks of User {props.user} _____ {/* {props.userWho} */}
+        {/* {prompt("who","")} */}
+      </h3>
       <div className="new__task__block">
         <input className={"input__new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
         <button onClick={addTask}>+</button>
@@ -66,25 +72,37 @@ export function TodoList(props: PropsType) {
           const onRemove = () => {
             props.removeTask(i.id);
           };
-          const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+          const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
             props.changeStatus(i.id);
+          };
+          const onChangeTitle = (newValue:string) => {
+            props.changeTaskTitle(i.id, newValue);
           };
 
           return (
-            <li key={i.id} className={i.isDone ? "task__block is__done":"task__block"}>
-              <input type="checkbox" onChange={onChange} checked={i.isDone} />
-              <span className={"text__task"}>{i.text}</span>
-              <button onClick={onRemove}>X</button>
+            <li key={i.id} className={i.isDone ? "task__block is__done" : "task__block"}>
+              <input type="checkbox" onChange={onChangeStatus} checked={i.isDone} />
+
+              <EditTitle title={i.title} id={i.id} onChangeTitle={onChangeTitle}/>
+
+              {<button onClick={onRemove}>X</button>}
             </li>
           );
         })}
       </ul>
 
       <div className={"buttons__filter"}>
-        <button onClick={onAllClick} className={props.filter === 'all' ? "active__filter" : ""}>All</button>
-        <button onClick={onNotDoneClick}className={props.filter === 'active' ? "active__filter" : ""}>Active</button>
-        <button onClick={onDoneClick}className={props.filter === 'done' ? "active__filter" : ""}>Done</button>
+        <button onClick={onAllClick} className={props.filter === "all" ? "active__filter" : ""}>
+          All
+        </button>
+        <button onClick={onNotDoneClick} className={props.filter === "active" ? "active__filter" : ""}>
+          Active
+        </button>
+        <button onClick={onDoneClick} className={props.filter === "done" ? "active__filter" : ""}>
+          Done
+        </button>
       </div>
     </div>
   );
 }
+

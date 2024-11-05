@@ -6,7 +6,7 @@ import Button from "../Atoms/Button";
 
  export type taskType = {
   id: number;
-  text: string;
+  title: string;
   isDone: boolean;
 };
 /*
