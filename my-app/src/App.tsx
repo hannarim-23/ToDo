@@ -1,9 +1,29 @@
 import React, { useState } from "react";
 import "./App.css";
 import { TodoList } from "./Organism/Todolist";
-import { taskItems1, taskItems2, taskItems3 } from "./View/view";
+import { taskItems1, taskItems2, taskItems3, allUsers } from "./View/view";
 import { taskType } from "./Molecules/Task";
 export type filterValueStyle = "all" | "active" | "done"; //тип для фильтра
+
+
+
+/* export type valueUser = "ivan" | "yana" | "dima"; //тип для фильтра
+let tasksForUser = allUsers;
+if (user === "ivan") {
+  taskItems = allUsers[0];
+}
+if (user === "yana") {
+  taskItems = allUsers[1];
+}
+if (user === "dima") {
+  taskItems = allUsers[2];
+}
+
+let [user, setUser] = useState<valueUser>(""); */
+
+
+
+
 
 function App() {
   let taskItems = taskItems1;
@@ -33,9 +53,9 @@ function App() {
 /*изменение  выполнена / не выполнена задача*///----------------------------
 
   function changeStatus(taskId: number/* , isDone: boolean */) {
-    let task = tasks.find((i) => i.id === taskId);
+    let task = tasks.find((i) => i.id === taskId); //true
     if (task) {
-      task.isDone = task.isDone;
+      task.isDone = !task.isDone;
     }
     setTasks([...tasks]);
   }
@@ -68,6 +88,7 @@ function App() {
           changeFilter={changeFilter}
           addTask={addTask}
           changeStatus={changeStatus}
+          filter={filter}
         />
       </header>
     </div>

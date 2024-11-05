@@ -18,12 +18,13 @@ type PropsType = {
   changeFilter: (val: filterValueStyle) => void;
   addTask: (text: string) => void;
   changeStatus: (id: number) => void;
+  filter: filterValueStyle;
 };
 
 export function TodoList(props: PropsType) {
   const [newTaskTitle, setNewTaskTitle] = useState(""); //пустая строка для ввода
 
-  /*реакция на событие добавление задачи / enter*/
+  /*реакция на событие добавление задачи кнопка/ enter*/
   const onEventNewTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setNewTaskTitle(e.currentTarget.value);
   };
@@ -44,20 +45,20 @@ export function TodoList(props: PropsType) {
   const onDoneClick = () => {
     props.changeFilter("done");
   };
+  /*add task*/
+  const addTask = () => {
+    if (newTaskTitle.trim() !== "") {
+      props.addTask(newTaskTitle);
+      setNewTaskTitle("");
+    }
+  };
 
-  /**/
   return (
-    <div>
+    <div className="wrapper">
       <h3> Tasks of User _____ {props.user}</h3>
-      <div>
+      <div className="new__task__block">
         <input className={"input__new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
-
-        <button
-          onClick={() => {
-            props.addTask(newTaskTitle);
-            setNewTaskTitle("");
-          }}
-        >+</button>
+        <button onClick={addTask}>+</button>
       </div>
 
       <ul>
@@ -70,7 +71,7 @@ export function TodoList(props: PropsType) {
           };
 
           return (
-            <li key={i.id} className={"task__block"}>
+            <li key={i.id} className={i.isDone ? "task__block is__done":"task__block"}>
               <input type="checkbox" onChange={onChange} checked={i.isDone} />
               <span className={"text__task"}>{i.text}</span>
               <button onClick={onRemove}>X</button>
@@ -80,9 +81,9 @@ export function TodoList(props: PropsType) {
       </ul>
 
       <div className={"buttons__filter"}>
-        <button onClick={onAllClick}>All</button>
-        <button onClick={onNotDoneClick}>Active</button>
-        <button onClick={onDoneClick}>Done</button>
+        <button onClick={onAllClick} className={props.filter === 'all' ? "active__filter" : ""}>All</button>
+        <button onClick={onNotDoneClick}className={props.filter === 'active' ? "active__filter" : ""}>Active</button>
+        <button onClick={onDoneClick}className={props.filter === 'done' ? "active__filter" : ""}>Done</button>
       </div>
     </div>
   );
