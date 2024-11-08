@@ -5,9 +5,11 @@ import Button from "../Atoms/Button";
 
 
  export type taskType = {
-  id: number;
-  title: string;
-  isDone: boolean;
+  id: number,
+  title: string,
+  isDone: boolean,
+  comment: string,
+  date: Date,
 };
 /*
 const Task = (props: taskType) => {

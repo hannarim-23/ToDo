@@ -6,23 +6,31 @@ export let taskItems1: taskType[] = [
   {
     id: 0,
     title: "0000000000000",
+    comment: "some text",
+    date: new Date("2024-11-07"),
     isDone: false,
   },
   {
     id: 1,
     title: "1111111111",
+    comment: "some text",
+    date: new Date("2024-10-12"),
     isDone: true,
   },
 
   {
     id: 2,
     title: "22222222222222",
+    comment: "some text",
+    date: new Date("2024-1-31"),
     isDone: false,
   },
 
   {
     id: 3,
     title: "333333333333333",
+    comment: "some text",
+    date: new Date("2024-5-27"),
     isDone: true,
   },
 ];
@@ -47,7 +55,11 @@ export let taskItemsArray = [
   ],
 ]; */
 
-export let taskItems2: taskType[] = [
+
+
+
+
+/* export let taskItems2: taskType[] = [
   {
     id: 4,
     title: "444444444444444444",
@@ -79,4 +91,4 @@ export let taskItems3: taskType = {
 };
 
 
-export let allUsers = [taskItems1,taskItems2,taskItems3];
+export let allUsers = [taskItems1,taskItems2,taskItems3]; */

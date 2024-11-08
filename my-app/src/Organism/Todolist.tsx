@@ -1,16 +1,9 @@
 import React, { KeyboardEvent, ChangeEvent, useState } from "react";
 //import Task from "../Molecules/Task";
-import Search from "../Atoms/Search";
 import Button from "../Atoms/Button";
 import { taskType } from "../Molecules/Task";
 import { filterValueStyle } from "../App";
 import { EditTitle } from "../Molecules/EditTask";
-
-/*  type taskType = {
-  id: number;
-  title: string;
-  isDone: boolean;
-}; */
 
 type PropsType = {
   user: string;
@@ -20,7 +13,8 @@ type PropsType = {
   addTask: (title: string) => void;
   changeStatus: (id: number) => void;
   filter: filterValueStyle;
-  changeTaskTitle: (id: number, newTitle:string) => void;
+  changeTaskTitle: (id: number, newTitle: string) => void;
+  changeTaskComment: (id: number, newComment: string) => void;
   //userWho:any;
 };
 
@@ -64,7 +58,7 @@ export function TodoList(props: PropsType) {
       </h3>
       <div className="new__task__block">
         <input className={"input__new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
-        <button onClick={addTask}>+</button>
+        <Button nameButton={"add"} funOnClick={addTask} />
       </div>
 
       <ul>
@@ -75,17 +69,18 @@ export function TodoList(props: PropsType) {
           const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
             props.changeStatus(i.id);
           };
-          const onChangeTitle = (newValue:string) => {
+          const onChangeTitle = (newValue: string) => {
             props.changeTaskTitle(i.id, newValue);
+          };
+          const onChangeComment = (newValue: string) => {
+            props.changeTaskComment(i.id, newValue);
           };
 
           return (
             <li key={i.id} className={i.isDone ? "task__block is__done" : "task__block"}>
               <input type="checkbox" onChange={onChangeStatus} checked={i.isDone} />
-
-              <EditTitle title={i.title} id={i.id} onChangeTitle={onChangeTitle}/>
-
-              {<button onClick={onRemove}>X</button>}
+              <EditTitle title={i.title} id={i.id} comment={i.comment} date={i.date} /* onRemove={onRemove} */ onChangeTitle={onChangeTitle} onChangeComment={onChangeComment} />
+              <Button nameButton={"del"} funOnClick={onRemove} />
             </li>
           );
         })}
@@ -105,4 +100,3 @@ export function TodoList(props: PropsType) {
     </div>
   );
 }
-

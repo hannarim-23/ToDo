@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { TodoList } from "./Organism/Todolist";
-import { taskItems1, taskItems2, taskItems3, allUsers } from "./View/view";
+import { taskItems1 /*,  taskItems2, taskItems3, allUsers  */ } from "./View/view";
 import { taskType } from "./Molecules/Task";
 import { title } from "process";
 export type filterValueStyle = "all" | "active" | "done"; //тип для фильтра
@@ -67,12 +67,25 @@ function App() {
     //засетаем в стэйт копию объекта, чтобы реакт перерисовал
     setTasks([...tasks]);
   }
+  /*колбэк F поднимаем значение вверх (к APP) изменяет значение comment */
+  function changeTaskComment(taskId: number, newComment: string) {
+    //находим нужную таску
+    let task = tasks.find((i) => i.id === taskId); //true
+    //изменяем таску если нашлась
+    if (task) {
+      task.comment = newComment;
+    }
+    //засетаем в стэйт копию объекта, чтобы реакт перерисовал
+    setTasks([...tasks]);
+  }
 
   /*добавление задачи*/
   function addTask(title: string) {
     let newTask = {
       id: tasks.length + 1,
       title: title,
+      comment: "...comment...",
+      date: new Date(),
       isDone: false,
     };
 
@@ -104,6 +117,7 @@ function App() {
           changeStatus={changeStatus}
           changeTaskTitle={changeTaskTitle}
           filter={filter}
+          changeTaskComment={changeTaskComment}
           //userWho={userWho}
         />
       </header>
