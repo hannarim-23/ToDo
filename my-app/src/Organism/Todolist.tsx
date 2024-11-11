@@ -15,7 +15,9 @@ type PropsType = {
   filter: filterValueStyle;
   changeTaskTitle: (id: number, newTitle: string) => void;
   changeTaskComment: (id: number, newComment: string) => void;
-  //userWho:any;
+  sortTasksTitle: () => void;
+  sortTasksDate: () => void;
+  sortTasksDateEnd: () => void;
 };
 
 export function TodoList(props: PropsType) {
@@ -50,53 +52,72 @@ export function TodoList(props: PropsType) {
     }
   };
 
-  return (
-    <div className="wrapper">
-      <h3>
-        Tasks of User {props.user} _____ {/* {props.userWho} */}
-        {/* {prompt("who","")} */}
-      </h3>
-      <div className="new__task__block">
-        <input className={"input__new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
-        <Button nameButton={"add"} funOnClick={addTask} />
+  /* sort tasks */
+  const onSortTasksTitle = () => props.sortTasksTitle();
+  const onSortTasksDate = () => props.sortTasksDate();
+  const onSortTasksDateEnd = () => props.sortTasksDateEnd();
+
+
+  
+  if (props.user === "Ivan" || props.user === "ivan") {
+    return (
+      <div className="wrapper">
+        <h3>
+          Tasks of User <span className="nameUser">{props.user}</span>
+        </h3>
+
+        <div className="new__task__block">
+          <input className={"input__new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
+          <Button nameButton={"add"} funOnClick={addTask} />
+        </div>
+
+        <ul>
+          {props.tasks.map((i) => {
+            const onRemove = () => {
+              props.removeTask(i.id);
+            };
+            const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
+              props.changeStatus(i.id);
+            };
+            const onChangeTitle = (newValue: string) => {
+              props.changeTaskTitle(i.id, newValue);
+            };
+            const onChangeComment = (newValue: string) => {
+              props.changeTaskComment(i.id, newValue);
+            };
+
+            return (
+              <li key={i.id} className={i.isDone ? "task__block is__done" : "task__block"}>
+                <input type="checkbox" onChange={onChangeStatus} checked={i.isDone} />
+                <EditTitle title={i.title} id={i.id} comment={i.comment} date={i.date} /* onRemove={onRemove} */ onChangeTitle={onChangeTitle} onChangeComment={onChangeComment} />
+                <Button nameButton={"del"} funOnClick={onRemove} />
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className={"buttons__filter"}>
+          <button onClick={onAllClick} className={props.filter === "all" ? "active__filter" : ""}>
+            All
+          </button>
+          <button onClick={onNotDoneClick} className={props.filter === "active" ? "active__filter" : ""}>
+            Active
+          </button>
+          <button onClick={onDoneClick} className={props.filter === "done" ? "active__filter" : ""}>
+            Done
+          </button>
+          <div className="sort__block">
+            <div className="sort__content">
+              <a onClick={onSortTasksTitle}>Sort by Title</a>
+              <a onClick={onSortTasksDateEnd}>Sort by Date(end)</a>
+              <a onClick={onSortTasksDate}>Sort by Date</a>
+            </div>
+            <button className="sort__button">Sort</button>
+          </div>
+        </div>
       </div>
-
-      <ul>
-        {props.tasks.map((i) => {
-          const onRemove = () => {
-            props.removeTask(i.id);
-          };
-          const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
-            props.changeStatus(i.id);
-          };
-          const onChangeTitle = (newValue: string) => {
-            props.changeTaskTitle(i.id, newValue);
-          };
-          const onChangeComment = (newValue: string) => {
-            props.changeTaskComment(i.id, newValue);
-          };
-
-          return (
-            <li key={i.id} className={i.isDone ? "task__block is__done" : "task__block"}>
-              <input type="checkbox" onChange={onChangeStatus} checked={i.isDone} />
-              <EditTitle title={i.title} id={i.id} comment={i.comment} date={i.date} /* onRemove={onRemove} */ onChangeTitle={onChangeTitle} onChangeComment={onChangeComment} />
-              <Button nameButton={"del"} funOnClick={onRemove} />
-            </li>
-          );
-        })}
-      </ul>
-
-      <div className={"buttons__filter"}>
-        <button onClick={onAllClick} className={props.filter === "all" ? "active__filter" : ""}>
-          All
-        </button>
-        <button onClick={onNotDoneClick} className={props.filter === "active" ? "active__filter" : ""}>
-          Active
-        </button>
-        <button onClick={onDoneClick} className={props.filter === "done" ? "active__filter" : ""}>
-          Done
-        </button>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return <div className="wrapper"></div>;
+  }
 }

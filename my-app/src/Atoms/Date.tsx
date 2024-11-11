@@ -1,3 +1,6 @@
+
+import './Date.css';
+
 export function readDate(d: Date) {
   let date = d.getDate();
   let month = d.getMonth();
@@ -10,7 +13,7 @@ export function readDate(d: Date) {
     "created in " +
     (date < 10 ? "0" + date : date) +
     "." +
-    (month + 1 < 10 ? month + 1 : month + 1) +
+    (month + 1 < 9 ? "0" + (month + 1) : month + 1) +
     "." +
     year +
     " " +

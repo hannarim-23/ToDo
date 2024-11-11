@@ -1,0 +1,17 @@
+.del__task__button {
+  background-color: rgb(219, 133, 121);
+}
+.edit__task__button {
+  background-color: rgb(200, 212, 130);
+}
+.add__task__button {
+  height: 50px;
+}
+button {
+  width: 50px;
+  height: 45px;
+  background-color: rgb(153, 212, 216);
+  border-radius: 10px;
+
+  cursor: pointer;
+}

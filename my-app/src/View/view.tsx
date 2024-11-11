@@ -1,11 +1,9 @@
 import { taskType } from "../Molecules/Task";
 
-
-
 export let taskItems1: taskType[] = [
   {
     id: 0,
-    title: "0000000000000",
+    title: "aa0000000000000",
     comment: "some text",
     date: new Date("2024-11-07"),
     isDone: false,
@@ -20,7 +18,7 @@ export let taskItems1: taskType[] = [
 
   {
     id: 2,
-    title: "22222222222222",
+    title: "322222222222222",
     comment: "some text",
     date: new Date("2024-1-31"),
     isDone: false,
@@ -28,7 +26,7 @@ export let taskItems1: taskType[] = [
 
   {
     id: 3,
-    title: "333333333333333",
+    title: "a333333333333333",
     comment: "some text",
     date: new Date("2024-5-27"),
     isDone: true,
@@ -54,10 +52,6 @@ export let taskItemsArray = [
     { id: 3, text: "333333333333333", isDone: true },
   ],
 ]; */
-
-
-
-
 
 /* export let taskItems2: taskType[] = [
   {
