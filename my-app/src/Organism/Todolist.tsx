@@ -57,7 +57,7 @@ export const TodoList = (props: PropsType) => {
   const onSortTasksDate = () => props.sortTasksDate();
   const onSortTasksDateEnd = () => props.sortTasksDateEnd();
 
-  if (props.user === "Ivan" || props.user === "ivan") {
+  if (props.user === "Ivan" || props.user === "ivan") {//!!!возможно тут проверку на undefined
     return (
       <div className="wrapper">
         <h3>

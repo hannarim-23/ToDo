@@ -11,7 +11,7 @@ function App() {
     let [tasks, setTasks] = useState<taskType[]>(taskItems1); //присвоение начального значения
   /*   console.log("------tasks-------", tasks); */
 
-  const [nameUser, setNameUser] = useState("");
+  const [nameUser, setNameUser] = useState("");//имя пользователя
   console.log("nameUser-------", nameUser);
 
 //  let [tasks, setTasks] = useState<taskType[]>();
@@ -109,9 +109,6 @@ function App() {
     let newTasks = [newTask, ...tasks]; //новый объект массива - add new task в начало массива и добавляем оставшийся массив
     setTasks(newTasks);
   };
-
-  /* имя пользователя */
-  //  const [nameUser, setNameUser] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     let newNameUser = e.target.value;

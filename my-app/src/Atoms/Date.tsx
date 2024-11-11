@@ -1,7 +1,6 @@
+import "./Date.css";
 
-import './Date.css';
-
-export function readDate(d: Date) {
+export const readDate = (d: Date) => {
   let date = d.getDate();
   let month = d.getMonth();
   let year = d.getFullYear();
@@ -23,4 +22,4 @@ export function readDate(d: Date) {
     ":" +
     (sec < 10 ? "0" + sec : sec)
   );
-}
+};
