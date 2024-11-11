@@ -1,30 +1,34 @@
 import React, { KeyboardEvent, ChangeEvent, useState } from "react";
 import "./App.css";
 import { TodoList } from "./Organism/Todolist";
-import { taskItems1 /*,  taskItems2, taskItems3, allUsers  */ } from "./View/view";
-import { taskType } from "./Molecules/Task";
-import { title } from "process";
-import Button from "./Atoms/Button";
+import { taskItems1, taskItems2 } from "./View/view";
+import { taskType, taskType2 } from "./View/view";
+//import { GetName } from "./Atoms/GetName";
+//import Button from "./Atoms/Button";
 export type filterValueStyle = "all" | "active" | "done"; //тип для фильтра
 
-/* export type valueUser = "ivan" | "yana" | "dima"; //тип для фильтра
-let tasksForUser = allUsers;
-if (user === "ivan") {
-  taskItems = allUsers[0];
-}
-if (user === "yana") {
-  taskItems = allUsers[1];
-}
-if (user === "dima") {
-  taskItems = allUsers[2];
-}
-
-let [user, setUser] = useState<valueUser>("");
- */
-
 function App() {
-  let taskItems = taskItems1;
-  let [tasks, setTasks] = useState<taskType[]>(taskItems); //присвоение начального значения
+    let [tasks, setTasks] = useState<taskType[]>(taskItems1); //присвоение начального значения
+  /*   console.log("------tasks-------", tasks); */
+
+  const [nameUser, setNameUser] = useState("");
+  console.log("nameUser-------", nameUser);
+
+//  let [tasks, setTasks] = useState<taskType[]>();
+//  let [tasks2, setTasks2] = useState<taskType2[]>(taskItems2); 
+//  console.log("------tasks2-------", tasks2);
+
+  let tasks1 = taskItems2.find((i) => i.user === nameUser); //true
+/*   if (tasks1) {
+    setTasks(tasks1.tasks);
+  }
+ */
+  console.log("------tasks1-------", tasks1?.tasks);
+
+
+
+
+
 
   /*удаление задачи */
   const removeTask = (id: number) => {
@@ -107,21 +111,23 @@ function App() {
   };
 
   /* имя пользователя */
-  const [nameUser, setNameUser] = useState("");
+  //  const [nameUser, setNameUser] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     let newNameUser = e.target.value;
-    setNameUser(newNameUser[0].toUpperCase() + newNameUser.slice(1));
+    setNameUser(newNameUser ? newNameUser[0].toUpperCase() + newNameUser.slice(1) : "");
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       let newNameUser = e.currentTarget.value;
-      setNameUser(newNameUser[0].toUpperCase() + newNameUser.slice(1));
+      setNameUser(newNameUser ? newNameUser[0].toUpperCase() + newNameUser.slice(1) : "");
     }
   };
 
+  //  if(nameUser){
   return (
+    //  <GetName></GetName>
     <div className="App">
       <header className="App-header">
         <div>
@@ -146,6 +152,12 @@ function App() {
       </header>
     </div>
   );
+  /*   } else{
+    return (
+      <GetName nameUser={nameUser}></GetName>
+
+    );
+  } */
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { KeyboardEvent, ChangeEvent, useState } from "react";
 //import Task from "../Molecules/Task";
 import Button from "../Atoms/Button";
-import { taskType } from "../Molecules/Task";
+import { taskType, taskType2 } from "../View/view";
 import { filterValueStyle } from "../App";
 import { EditTitle } from "../Molecules/EditTask";
 
@@ -20,7 +20,7 @@ type PropsType = {
   sortTasksDateEnd: () => void;
 };
 
-export function TodoList(props: PropsType) {
+export const TodoList = (props: PropsType) => {
   const [newTaskTitle, setNewTaskTitle] = useState(""); //пустая строка для ввода
 
   /*реакция на событие добавление задачи кнопка/ enter*/
@@ -57,8 +57,6 @@ export function TodoList(props: PropsType) {
   const onSortTasksDate = () => props.sortTasksDate();
   const onSortTasksDateEnd = () => props.sortTasksDateEnd();
 
-
-  
   if (props.user === "Ivan" || props.user === "ivan") {
     return (
       <div className="wrapper">
@@ -120,4 +118,4 @@ export function TodoList(props: PropsType) {
   } else {
     return <div className="wrapper"></div>;
   }
-}
+};
