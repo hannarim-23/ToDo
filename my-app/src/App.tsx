@@ -1,34 +1,36 @@
-import React, { KeyboardEvent, ChangeEvent, useState } from "react";
+import React, { KeyboardEvent, ChangeEvent, useState, useEffect } from "react";
 import "./App.css";
-import { TodoList } from "./Organism/Todolist";
+//import { TodoList } from "./Organism/Todolist";
 import { taskItems1, taskItems2 } from "./View/view";
 import { taskType, taskType2 } from "./View/view";
-//import { GetName } from "./Atoms/GetName";
+import { GetName } from "./Atoms/GetName";
 //import Button from "./Atoms/Button";
 export type filterValueStyle = "all" | "active" | "done"; //тип для фильтра
 
 function App() {
-    let [tasks, setTasks] = useState<taskType[]>(taskItems1); //присвоение начального значения
+  let [tasks, setTasks] = useState<taskType[]>(taskItems1); //присвоение начального значения
   /*   console.log("------tasks-------", tasks); */
 
-  const [nameUser, setNameUser] = useState("");//имя пользователя
-  console.log("nameUser-------", nameUser);
+  const [nameUser, setNameUser] = useState(""); //имя пользователя
 
-//  let [tasks, setTasks] = useState<taskType[]>();
-//  let [tasks2, setTasks2] = useState<taskType2[]>(taskItems2); 
-//  console.log("------tasks2-------", tasks2);
+  const handleChangeName = (newNameUser: string) => {
+    setNameUser(newNameUser ? (newNameUser[0].toUpperCase() + newNameUser.slice(1)) : "");
+  };
 
-  let tasks1 = taskItems2.find((i) => i.user === nameUser); //true
-/*   if (tasks1) {
+  //  let [tasks, setTasks] = useState<taskType[]>();
+  //  let [tasks2, setTasks2] = useState<taskType2[]>(taskItems2);
+  //  console.log("------tasks2-------", tasks2);
+
+  /*   let tasks1 = taskItems2.find((i) => i.user === nameUser); 
+  if (tasks1) {
     setTasks(tasks1.tasks);
   }
- */
-  console.log("------tasks1-------", tasks1?.tasks);
+  console.log("------tasks1-------", tasks1?.tasks); */
 
-
-
-
-
+  useEffect(() => {
+    console.log("------++++++-------");
+    handleChangeName(nameUser);
+  }, [nameUser]);
 
   /*удаление задачи */
   const removeTask = (id: number) => {
@@ -124,10 +126,10 @@ function App() {
 
   //  if(nameUser){
   return (
-    //  <GetName></GetName>
     <div className="App">
       <header className="App-header">
-        <div>
+        <GetName nameUser={nameUser} handleChangeName={handleChangeName}></GetName>
+        {/*         <div>
           <h4>Who are you?</h4>
           <input type="text" value={nameUser} onChange={handleChange} onKeyDown={onKeyDown} />
         </div>
@@ -145,7 +147,7 @@ function App() {
           sortTasksTitle={sortTasksTitle}
           sortTasksDate={sortTasksDate}
           sortTasksDateEnd={sortTasksDateEnd}
-        />
+        /> */}
       </header>
     </div>
   );
