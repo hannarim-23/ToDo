@@ -57,65 +57,61 @@ export const TodoList = (props: PropsType) => {
   const onSortTasksDate = () => props.sortTasksDate();
   const onSortTasksDateEnd = () => props.sortTasksDateEnd();
 
-  if (props.user === "Ivan" || props.user === "ivan") {//!!!возможно тут проверку на undefined
-    return (
-      <div className="wrapper">
-        <h3>
-          Tasks of User <span className="nameUser">{props.user}</span>
-        </h3>
+  return (
+    <div className="wrapper">
+      <h3>
+        Tasks of User <span className="nameUser">{props.user}</span>
+      </h3>
 
-        <div className="new__task__block">
-          <input className={"input__new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
-          <Button nameButton={"add"} funOnClick={addTask} />
-        </div>
+      <div className="new__task__block">
+        <input className={"input__new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
+        <Button nameButton={"add"} funOnClick={addTask} />
+      </div>
 
-        <ul>
-          {props.tasks.map((i) => {
-            const onRemove = () => {
-              props.removeTask(i.id);
-            };
-            const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
-              props.changeStatus(i.id);
-            };
-            const onChangeTitle = (newValue: string) => {
-              props.changeTaskTitle(i.id, newValue);
-            };
-            const onChangeComment = (newValue: string) => {
-              props.changeTaskComment(i.id, newValue);
-            };
+      <ul>
+        {props.tasks.map((i) => {
+          const onRemove = () => {
+            props.removeTask(i.id);
+          };
+          const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
+            props.changeStatus(i.id);
+          };
+          const onChangeTitle = (newValue: string) => {
+            props.changeTaskTitle(i.id, newValue);
+          };
+          const onChangeComment = (newValue: string) => {
+            props.changeTaskComment(i.id, newValue);
+          };
 
-            return (
-              <li key={i.id} className={i.isDone ? "task__block is__done" : "task__block"}>
-                <input type="checkbox" onChange={onChangeStatus} checked={i.isDone} />
-                <EditTitle title={i.title} id={i.id} comment={i.comment} date={i.date} /* onRemove={onRemove} */ onChangeTitle={onChangeTitle} onChangeComment={onChangeComment} />
-                <Button nameButton={"del"} funOnClick={onRemove} />
-              </li>
-            );
-          })}
-        </ul>
+          return (
+            <li key={i.id} className={i.isDone ? "task__block is__done" : "task__block"}>
+              <input type="checkbox" onChange={onChangeStatus} checked={i.isDone} />
+              <EditTitle title={i.title} id={i.id} comment={i.comment} date={i.date} /* onRemove={onRemove} */ onChangeTitle={onChangeTitle} onChangeComment={onChangeComment} />
+              <Button nameButton={"del"} funOnClick={onRemove} />
+            </li>
+          );
+        })}
+      </ul>
 
-        <div className={"buttons__filter"}>
-          <button onClick={onAllClick} className={props.filter === "all" ? "active__filter" : ""}>
-            All
-          </button>
-          <button onClick={onNotDoneClick} className={props.filter === "active" ? "active__filter" : ""}>
-            Active
-          </button>
-          <button onClick={onDoneClick} className={props.filter === "done" ? "active__filter" : ""}>
-            Done
-          </button>
-          <div className="sort__block">
-            <div className="sort__content">
-              <a onClick={onSortTasksTitle}>Sort by Title</a>
-              <a onClick={onSortTasksDateEnd}>Sort by Date(end)</a>
-              <a onClick={onSortTasksDate}>Sort by Date</a>
-            </div>
-            <button className="sort__button">Sort</button>
+      <div className={"buttons__filter"}>
+        <button onClick={onAllClick} className={props.filter === "all" ? "active__filter" : ""}>
+          All
+        </button>
+        <button onClick={onNotDoneClick} className={props.filter === "active" ? "active__filter" : ""}>
+          Active
+        </button>
+        <button onClick={onDoneClick} className={props.filter === "done" ? "active__filter" : ""}>
+          Done
+        </button>
+        <div className="sort__block">
+          <div className="sort__content">
+            <a onClick={onSortTasksTitle}>Sort by Title</a>
+            <a onClick={onSortTasksDateEnd}>Sort by Date(end)</a>
+            <a onClick={onSortTasksDate}>Sort by Date</a>
           </div>
+          <button className="sort__button">Sort</button>
         </div>
       </div>
-    );
-  } else {
-    return <div className="wrapper"></div>;
-  }
+    </div>
+  );
 };

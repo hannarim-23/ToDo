@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, ChangeEvent, useState } from "react";
+import React, {ChangeEvent, useState } from "react";
 
 type userType = {
   nameUser: string;

@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, ChangeEvent, useState, useEffect } from "react";
 import "./App.css";
-//import { TodoList } from "./Organism/Todolist";
+import { TodoList } from "./Organism/Todolist";
 import { taskItems1, taskItems2 } from "./View/view";
 import { taskType, taskType2 } from "./View/view";
 import { GetName } from "./Atoms/GetName";
@@ -11,10 +11,10 @@ function App() {
   let [tasks, setTasks] = useState<taskType[]>(taskItems1); //присвоение начального значения
   /*   console.log("------tasks-------", tasks); */
 
+  /*set Name of user */
   const [nameUser, setNameUser] = useState(""); //имя пользователя
-
   const handleChangeName = (newNameUser: string) => {
-    setNameUser(newNameUser ? (newNameUser[0].toUpperCase() + newNameUser.slice(1)) : "");
+    setNameUser(newNameUser ? newNameUser[0].toUpperCase() + newNameUser.slice(1) : "");
   };
 
   //  let [tasks, setTasks] = useState<taskType[]>();
@@ -124,39 +124,37 @@ function App() {
     }
   };
 
-  //  if(nameUser){
-  return (
-    <div className="App">
-      <header className="App-header">
-        <GetName nameUser={nameUser} handleChangeName={handleChangeName}></GetName>
-        {/*         <div>
-          <h4>Who are you?</h4>
-          <input type="text" value={nameUser} onChange={handleChange} onKeyDown={onKeyDown} />
-        </div>
-
-        <TodoList
-          user={nameUser}
-          tasks={tasksForToDoList}
-          removeTask={removeTask}
-          changeFilter={changeFilter}
-          addTask={addTask}
-          changeStatus={changeStatus}
-          changeTaskTitle={changeTaskTitle}
-          changeTaskComment={changeTaskComment}
-          filter={filter}
-          sortTasksTitle={sortTasksTitle}
-          sortTasksDate={sortTasksDate}
-          sortTasksDateEnd={sortTasksDateEnd}
-        /> */}
-      </header>
-    </div>
-  );
-  /*   } else{
+  if (nameUser === "Ivan" || nameUser === "Sergey") {
     return (
-      <GetName nameUser={nameUser}></GetName>
-
+      <div className="App">
+        <header className="App-header">
+          <GetName nameUser={nameUser} handleChangeName={handleChangeName}></GetName>
+          <TodoList
+            user={nameUser}
+            tasks={tasksForToDoList}
+            removeTask={removeTask}
+            changeFilter={changeFilter}
+            addTask={addTask}
+            changeStatus={changeStatus}
+            changeTaskTitle={changeTaskTitle}
+            changeTaskComment={changeTaskComment}
+            filter={filter}
+            sortTasksTitle={sortTasksTitle}
+            sortTasksDate={sortTasksDate}
+            sortTasksDateEnd={sortTasksDateEnd}
+          />
+        </header>
+      </div>
     );
-  } */
+  } else {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <GetName nameUser={nameUser} handleChangeName={handleChangeName}></GetName>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
