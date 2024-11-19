@@ -13,7 +13,7 @@ export type taskType2 = {
   tasks: taskType[];
 };
 
-export let taskItems1: taskType[] = [
+export const taskItems1: taskType[] = [
   {
     id: 0,
     title: "aa0000000000000",
@@ -48,11 +48,11 @@ export let taskItems1: taskType[] = [
 
 
 
-export let taskItems2: taskType2[] = [
+export const taskItems2: taskType2[] = [
   {
     user: "Ivan",
     tasks: [
-      { id: 0, title: "aa0000000000000", comment: "some text", date: new Date("2024-11-07"), isDone: false },
+      { id: 0, title: "---aa0000000000000", comment: "some text", date: new Date("2024-11-07"), isDone: false },
       { id: 1, title: "1111111111", comment: "some text", date: new Date("2024-10-12"), isDone: true },
       { id: 2, title: "322222222222222", comment: "some text", date: new Date("2024-1-31"), isDone: false },
       { id: 3, title: "a333333333333333", comment: "some text", date: new Date("2024-5-27"), isDone: true },

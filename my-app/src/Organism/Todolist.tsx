@@ -1,9 +1,8 @@
 import React, { KeyboardEvent, ChangeEvent, useState } from "react";
-//import Task from "../Molecules/Task";
-import Button from "../Atoms/Button";
+import { Button } from "../Atoms/Button/Button";
 import { taskType, taskType2 } from "../View/view";
-import { filterValueStyle } from "../App";
-import { EditTitle } from "../Molecules/EditTask";
+import { filterValueStyle } from "./ListOfUser";
+import { EditTask } from "../Molecules/EditTask/EditTask";
 
 type PropsType = {
   user: string;
@@ -13,8 +12,7 @@ type PropsType = {
   addTask: (title: string) => void;
   changeStatus: (id: number) => void;
   filter: filterValueStyle;
-  changeTaskTitle: (id: number, newTitle: string) => void;
-  changeTaskComment: (id: number, newComment: string) => void;
+  changeTask: (id: number, newComment: string, newTitle: string) => void;
   sortTasksTitle: () => void;
   sortTasksDate: () => void;
   sortTasksDateEnd: () => void;
@@ -34,17 +32,12 @@ export const TodoList = (props: PropsType) => {
     }
   };
 
-  /* изменение данных в зависимости от нажатого фильтра*/
-  const onAllClick = () => {
-    props.changeFilter("all");
-  };
-  const onNotDoneClick = () => {
-    props.changeFilter("active");
-  };
-  const onDoneClick = () => {
-    props.changeFilter("done");
-  };
-  /*add task*/
+  /* изменение данных в зависимости от нажатого фильтра*/ /* Сделать одной функцией */
+  const onAllClick = () => props.changeFilter("all");
+  const onNotDoneClick = () => props.changeFilter("active");
+  const onDoneClick = () => props.changeFilter("done");
+
+  /*add task*/ //упростить до 2х строк
   const addTask = () => {
     if (newTaskTitle.trim() !== "") {
       props.addTask(newTaskTitle);
@@ -65,29 +58,22 @@ export const TodoList = (props: PropsType) => {
 
       <div className="new__task__block">
         <input className={"input__new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
-        <Button nameButton={"add"} funOnClick={addTask} />
+        <Button title={"add"} onClick={addTask} />
       </div>
 
       <ul>
         {props.tasks.map((i) => {
-          const onRemove = () => {
-            props.removeTask(i.id);
-          };
-          const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
-            props.changeStatus(i.id);
-          };
-          const onChangeTitle = (newValue: string) => {
-            props.changeTaskTitle(i.id, newValue);
-          };
-          const onChangeComment = (newValue: string) => {
-            props.changeTaskComment(i.id, newValue);
+          const onRemove = () => props.removeTask(i.id);
+          const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeStatus(i.id);
+          const onChangeTask = (newComment: string, newTitle: string) => {
+            props.changeTask(i.id, newComment, newTitle);
           };
 
           return (
             <li key={i.id} className={i.isDone ? "task__block is__done" : "task__block"}>
               <input type="checkbox" onChange={onChangeStatus} checked={i.isDone} />
-              <EditTitle title={i.title} id={i.id} comment={i.comment} date={i.date} /* onRemove={onRemove} */ onChangeTitle={onChangeTitle} onChangeComment={onChangeComment} />
-              <Button nameButton={"del"} funOnClick={onRemove} />
+              <EditTask id={i.id} title={i.title} comment={i.comment} date={i.date} isDone={i.isDone} onChangeTask={onChangeTask} /* onRemove={onRemove} */ />
+              {<Button title={"del"} onClick={onRemove} /* disabled={i.isDone} */ />}
             </li>
           );
         })}
@@ -105,9 +91,9 @@ export const TodoList = (props: PropsType) => {
         </button>
         <div className="sort__block">
           <div className="sort__content">
-            <a onClick={onSortTasksTitle}>Sort by Title</a>
-            <a onClick={onSortTasksDateEnd}>Sort by Date(end)</a>
-            <a onClick={onSortTasksDate}>Sort by Date</a>
+            <p onClick={onSortTasksTitle}>Sort by Title</p>
+            <p onClick={onSortTasksDateEnd}>Sort by Date(end)</p>
+            <p onClick={onSortTasksDate}>Sort by Date</p>
           </div>
           <button className="sort__button">Sort</button>
         </div>

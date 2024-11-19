@@ -1,0 +1,12 @@
+.invalid__input {
+  border: solid 2px red;
+}
+.invalid__message {
+  color: red;
+}
+.invalid__input :focus { /*не работает*/
+  color: #33b812;
+  background-color: #3aafcc;
+  border-color: green;
+  outline: 0;
+}
