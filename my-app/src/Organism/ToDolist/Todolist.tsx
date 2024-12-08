@@ -4,6 +4,7 @@ import { taskType } from "../../View/view";
 import { EditTask } from "../../Molecules/EditTask/EditTask";
 import "./ToDolist.css";
 import Input from "../../Atoms/Input/Input";
+import BtnsFilter from "../../Atoms/BtnsFilter/BtnsFilter";
 
 type PropsType = {
   tasks: taskType[];
@@ -18,12 +19,21 @@ type PropsType = {
 export const TodoList = (props: PropsType) => {
   //пустая строка для ввода
   const [newTaskTitle, setNewTaskTitle] = useState("");
-  const variantsFilter = ["all", "active", "done"];
+
   const variantsSorts = [
     { title: "title", name: "Sort by Title" },
     { title: "dateEnd", name: "Sort by date End" },
     { title: "dateStart", name: "Sort by date Start" },
   ];
+
+  /*set active btn filter */
+  const [activeVal, setActiveVal] = useState("all");
+  const variantsFilter = ["all", "active", "done"];
+  const arrayForButtons = variantsFilter;
+  const onFilterClick = (val: string) => {
+    props.changeFilter(val);
+    setActiveVal(val);
+  };
 
   /*реакция на событие добавление задачи кнопка/ enter*/
   const onEventNewTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -74,21 +84,20 @@ export const TodoList = (props: PropsType) => {
       </ul>
 
       <div className="buttons__filter">
-        {variantsFilter.map((i) => {
-          return (
-            <Button title={"filter"} onClick={() => props.changeFilter(i)}>
-              {i}
-            </Button>
-          );
-        })}
+        {arrayForButtons.map((item) => (
+          <BtnsFilter 
+          handleClick={() => onFilterClick(item)} 
+          isActive={activeVal === item} 
+          title={item} />
+        ))}
 
         <div className="sort__block">
           <div className="sort__content">
             {variantsSorts.map((i) => {
               return (
-                <Button title={"sort"} onClick={() => props.sortTasks(i.title)}>
+                <p title={"sort"} onClick={() => props.sortTasks(i.title)}>
                   {i.name}
-                </Button>
+                </p>
               );
             })}
           </div>

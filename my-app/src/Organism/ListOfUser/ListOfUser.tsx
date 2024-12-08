@@ -14,7 +14,7 @@ export const ListOfUser = (props: listType) => {
   // Del task
   const removeTask = (id: number) => setTasks(tasks.filter((i) => i.id !== id));
 
-  //фильтрация по кнопкам  --------------------переделать
+  //фильтрация по кнопкам
   const [filter, setFilter] = useState("all"); //у всех значение all
   const changeFilter = (val: string) => setFilter(val);
   let tasksForToDoList = tasks;

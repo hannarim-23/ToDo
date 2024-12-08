@@ -1,0 +1,10 @@
+  .react-button {
+    width: fit-content;
+    border: 1px solid #bbffdd;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+  }
+
+  .react-button.active {
+    background-color: rgb(116, 209, 116);
+  }

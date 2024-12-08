@@ -9,10 +9,9 @@ export type buttonType = {
 
 export const Button = ({ title, onClick, disabled, children }: buttonType) => {
   const nameBtn = children[0].toUpperCase() + children.slice(1);
-//можно ли в модуль css передать несколько классов?
+  //можно ли в модуль css передать несколько классов?
   return disabled === true ? (
     <button className={styles[title]} onClick={onClick} disabled>
-      
       {/*   <button className={styles[`${title} ${all}`]} onClick={onClick} disabled> */}
       {nameBtn}
     </button>
