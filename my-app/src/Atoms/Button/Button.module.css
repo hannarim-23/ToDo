@@ -1,0 +1,55 @@
+.del {
+  background-color: rgb(219, 133, 121);
+}
+.del:hover {
+  background-color: red;
+}
+
+.edit {
+  background-color: rgb(200, 212, 130);
+}
+
+.add {
+  height: 50px;
+}
+
+.tryAgain {
+  margin-top: 20px;
+}
+
+.exit {
+  float: right;
+  padding: 0;
+  width: 40px;
+  height: 50px;
+  border: none;
+  background-image: url("/public/icon-exit.png");
+  background-size: cover;
+  opacity: 0.2;
+}
+.exit:hover {
+  opacity: 1;
+}
+.arr {
+  color: red; /*не работает*/
+}
+
+button {
+  min-width: 50px;
+  width: auto;
+  height: 45px;
+  background-color: rgb(153, 212, 216);
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(116, 209, 116);
+}
+button[disabled] {
+  cursor: context-menu;
+}
+button[disabled]:hover {
+  background-color: rgb(200, 212, 130);
+}
+

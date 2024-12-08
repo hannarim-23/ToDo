@@ -1,0 +1,87 @@
+.nameUser {
+  color: gold;
+}
+.new__task__block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.to__do__list {
+  max-height: 700px;
+  overflow: auto;
+}
+.to__do__list::-webkit-scrollbar {
+  width: 0;
+}
+.task__block {
+  box-sizing: border-box;
+  height: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: solid 2px rgb(153, 212, 216);
+  border-radius: 25px;
+}
+.is__done {
+  opacity: 0.5;
+}
+
+/*buttons*/
+
+.buttons__filter {
+  height: 60px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.active__filter {
+  background-color: rgb(116, 209, 116);
+}
+
+/*sort----------------------*/
+
+.sort__block {
+  position: relative;
+  display: inline-block;
+  height: 45px;
+}
+
+.sort__content {
+  display: none;
+  position: absolute;
+  background-color: #7a8291;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.sort__content p {
+  color: black;
+  padding: 12px;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sort__content p:hover {
+  background-color: rgb(116, 209, 116);
+  cursor: pointer;
+}
+/*------*/
+.sort__block:hover .sort__content {
+  display: block;
+  top: -120px;
+  left: 50px;
+}
+
+.sort__block:hover .sort__button {
+  background-color: rgb(116, 209, 116);
+}

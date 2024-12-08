@@ -1,6 +1,8 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { Button } from "../../Atoms/Button/Button";
-import { readDate } from "../../Atoms/Date/Date";
+import Date from "../../Atoms/Date/Date";
+import styles from "./EditTask.module.css";
+import Input from "../../Atoms/Input/Input";
 
 type editTitleType = {
   title: string;
@@ -9,91 +11,48 @@ type editTitleType = {
   date: Date;
   isDone: boolean;
   onChangeTask: (newTitle: string, newComment: string) => void;
-  //onRemove: () => void; //
 };
 
 export const EditTask = (props: editTitleType) => {
   const [editMode, setEditMode] = useState(false);
-  const [title, setTitle] = useState("");
-  const [comment, setComment] = useState("");
-
-  /*   const [value, setValue] = useState({title: "", comment: ""})
-  const activatedEditMode = () => setEditMode(editMode);
-  const activatedViewMode = () => setEditMode(!editMode); */
-
-  /*   const onChange = (val: string, type: string) => {
-    //запись нового значения, колбэком поднимаем значение вверх (к APP)
-    setValue({ ...value, [type]: val }); //------------???
-  }; */
-
-  //const [tasks, setTasks] = useState<taskType[]>(taskItems2[0].tasks); //присвоение начального значения
+  const [value, setValue] = useState({ title: "", comment: "" });
 
   const activatedEditMode = () => {
     setEditMode(true);
-    setTitle(props.title);
-    setComment(props.comment);
-    props.onChangeTask(title, comment);
+    setValue({ title: props.title, comment: props.comment });
+    props.onChangeTask(value.title, value.comment);
   };
   const activatedViewMode = () => {
     setEditMode(false);
-    props.onChangeTask(title, comment);
+    props.onChangeTask(value.title, value.comment);
   };
 
   const onChangeTask = (e: ChangeEvent<HTMLInputElement>) => {
-    e.target.name === "comment" && setComment(e.currentTarget.value);
-    e.target.name === "title" && setTitle(e.currentTarget.value);
+    //запись нового значения, колбэком поднимаем значение вверх (к APP)
+    setValue({ title: e.target.name === "title" ? e.currentTarget.value : value.title, comment: e.target.name === "comment" ? e.currentTarget.value : value.comment });
   };
 
-  /*   const onRemove = () => {
-    console.log("props.id", props.id);
-    return props.id
-    //setId( props.id);
-  }; */
-
-  /*   return editMode ? (
-    <div className="task__for__edit">   
-      <input name="title" value={value.title} onChange={(e)=>onChange(e.target.value, "title")} />
-      <input name="comment" value={value.comment} onChange={(e)=>onChange(e.target.value, "comment")}/>
-      <Button title={"save"} onClick={activatedViewMode} disabled={props.isDone}/>
-
-    </div>
-  ) : (
-    <div className="task__for__edit">
-      <div className="text__task">
-        <p className={"title__task"} onClick={activatedEditMode}>
-          {props.title}
-        </p>
-        <p className={"comment__task"} onClick={activatedEditMode}>
-          {props.comment}
-        </p>
-        <span className={"date"}>{readDate(props.date)}</span>
-      </div>
-      <Button title={"edit"} onClick={activatedEditMode} disabled={props.isDone}/>
-    </div>
-  );
-};
-
-
- */
-
   return editMode ? (
-    <div className="task__for__edit">
-      <input name="title" value={title} onChange={onChangeTask} />
-      <input name="comment" value={comment} onChange={onChangeTask} />
-      <Button title={"save"} onClick={activatedViewMode} disabled={props.isDone} />
+    <div className={styles["task__for__edit"]}>
+      <div className={styles["task__information"]}>
+        <Input type="text" className="input__change" name="title" value={value.title} onChange={onChangeTask}></Input>
+        <Input type="text" className="input__change" name="comment" value={value.comment} onChange={onChangeTask}></Input>
+        <Date date={props.date} />
+      </div>
+      <Button title={"save"} onClick={activatedViewMode} disabled={props.isDone}>
+        Save
+      </Button>
     </div>
   ) : (
-    <div className="task__for__edit">
-      <div className="text__task">
-        <p className={"title__task"} onClick={activatedEditMode}>
-          {props.title}
-        </p>
-        <p className={"comment__task"} onClick={activatedEditMode}>
-          {props.comment}
-        </p>
-        <span className={"date"}>{readDate(props.date)}</span>
+    <div className={styles["task__for__edit"]}>
+      <div className={styles["task__information"]}>
+        <p className={styles["title__task"]}>{props.title}</p>
+        <p className={styles["comment__task"]}>{props.comment}</p>
+        <Date date={props.date} />
       </div>
-      <Button title={"edit"} onClick={activatedEditMode} disabled={props.isDone} />
+      <Button title="edit" onClick={activatedEditMode} disabled={props.isDone}>
+        Edit
+      </Button>
     </div>
   );
 };

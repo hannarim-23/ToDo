@@ -1,25 +1,33 @@
-import "./Date.css";
+import styles from "./Date.module.css";
 
-export const readDate = (d: Date) => {
-  let date = d.getDate();
-  let month = d.getMonth();
-  let year = d.getFullYear();
-  let hours = d.getHours();
-  let min = d.getMinutes();
-  let sec = d.getSeconds();
+type dateType = {
+  date: Date;
+};
+
+const Date = ({ date }: dateType) => {
+  const day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+  let hours = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
 
   return (
-    "created in " +
-    (date < 10 ? "0" + date : date) +
-    "." +
-    (month + 1 < 9 ? "0" + (month + 1) : month + 1) +
-    "." +
-    year +
-    " " +
-    (hours < 10 ? "0" + hours : hours) +
-    ":" +
-    (min < 10 ? "0" + min : min) +
-    ":" +
-    (sec < 10 ? "0" + sec : sec)
+    <span className={styles.date}>
+      {"created in " +
+        (day < 10 ? "0" + day : day) +
+        "." +
+        (month + 1 < 9 ? "0" + (month + 1) : month + 1) +
+        "." +
+        year +
+        " " +
+        (hours < 10 ? "0" + hours : hours) +
+        ":" +
+        (min < 10 ? "0" + min : min) +
+        ":" +
+        (sec < 10 ? "0" + sec : sec)}
+    </span>
   );
 };
+
+export default Date;
