@@ -6,11 +6,11 @@ type dateType = {
 
 const Date = ({ date }: dateType) => {
   const day = date.getDate();
-  let month = date.getMonth();
-  let year = date.getFullYear();
-  let hours = date.getHours();
-  let min = date.getMinutes();
-  let sec = date.getSeconds();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const min = date.getMinutes();
+  const sec = date.getSeconds();
 
   return (
     <span className={styles.date}>

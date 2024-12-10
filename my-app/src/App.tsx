@@ -9,7 +9,7 @@ const App = () => {
   const sendName = (newNameUser: string) => {
     setNameUser(newNameUser ? newNameUser[0].toUpperCase() + newNameUser.slice(1) : "");
   };
-//лучше сделать отдельной ф-цией или внедрить в код сразу?
+  //лучше сделать отдельной ф-цией или внедрить в код сразу?
   /*   const view = () => {
     return nameUser !== "" ? 
     <ListOfUser nameUser={nameUser} /> 
@@ -19,11 +19,9 @@ const App = () => {
   return (
     <div className="App">
       <header></header>
-      {/*       <body className="App-body">{view()}</body> */}
-      <body className="App-body">{ 
-      nameUser !== "" 
-      ? <ListOfUser nameUser={nameUser} /> 
-      : <GetName sendNameUser={sendName}></GetName>}</body>
+      {/*       <main className="App-body">{view()}</main> */}
+      <main className="App-body">{nameUser !== "" ? <ListOfUser nameUser={nameUser} /> : <GetName sendNameUser={sendName}></GetName>}</main>
+      <footer></footer>
     </div>
   );
 };

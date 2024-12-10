@@ -17,7 +17,7 @@ export const ListOfUser = (props: listType) => {
   //фильтрация по кнопкам
   const [filter, setFilter] = useState("all"); //у всех значение all
   const changeFilter = (val: string) => setFilter(val);
-  let tasksForToDoList = tasks;
+  let tasksForToDoList = tasks; //1 let позволителен в данном случае?
   filter === "done" && (tasksForToDoList = tasks.filter((i) => i.isDone === true));
   filter === "active" && (tasksForToDoList = tasks.filter((i) => i.isDone === false));
 
@@ -94,8 +94,8 @@ export const ListOfUser = (props: listType) => {
   };
 
   return tasks.length ? (
-    <body className="App-body">
-      <div className="wrapper">
+    <div className="wrapper list__of__user">
+      <div className="title">
         <Button title={"exit"} onClick={refreshPage}>
           {" "}
         </Button>
@@ -104,15 +104,15 @@ export const ListOfUser = (props: listType) => {
         </h3>
       </div>
       <TodoList tasks={tasksForToDoList} removeTask={removeTask} changeFilter={changeFilter} addTask={addTask} changeStatus={changeStatus} changeTask={changeTask} sortTasks={sortTasks} />
-    </body>
+    </div>
   ) : (
-    <body className="App-body">
-      <div className="wrapper">
+    <div className="wrapper list__of__user">
+      <div className="title">
         <div>POSTS NOT FOUND</div>
         <Button title={"tryAgain"} onClick={refreshPage}>
           TRY AGAIN
         </Button>
       </div>
-    </body>
+    </div>
   );
 };

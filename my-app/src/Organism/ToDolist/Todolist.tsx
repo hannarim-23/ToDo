@@ -56,7 +56,7 @@ export const TodoList = (props: PropsType) => {
   };
 
   return (
-    <div className="wrapper">
+    <div>
       <div className="new__task__block">
         <Input className={"new__task"} type="text" value={newTaskTitle} onChange={onEventNewTitle} onKeyDown={onKeyPress} />
         <Button title={"add"} onClick={addTask}>
@@ -85,10 +85,7 @@ export const TodoList = (props: PropsType) => {
 
       <div className="buttons__filter">
         {arrayForButtons.map((item) => (
-          <BtnsFilter 
-          handleClick={() => onFilterClick(item)} 
-          isActive={activeVal === item} 
-          title={item} />
+          <BtnsFilter handleClick={() => onFilterClick(item)} isActive={activeVal === item} title={item} />
         ))}
 
         <div className="sort__block">
