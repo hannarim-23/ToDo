@@ -1,17 +1,29 @@
-import React from "react";
+import { useState } from "react";
 import "./App.css";
-import TodoList from "./Organism/Todolist";
-//import {taskItems, taskItems2, taskItems3} from "./View/view";
+import { GetName } from "./Molecules/GetName/GetName";
+import { ListOfUser } from "./Organism/ListOfUser/ListOfUser";
 
-function App() {
+const App = () => {
+  const [nameUser, setNameUser] = useState("");
+
+  const sendName = (newNameUser: string) => {
+    setNameUser(newNameUser ? newNameUser[0].toUpperCase() + newNameUser.slice(1) : "");
+  };
+  //лучше сделать отдельной ф-цией или внедрить в код сразу?
+  /*   const view = () => {
+    return nameUser !== "" ? 
+    <ListOfUser nameUser={nameUser} /> 
+    : <GetName sendNameUser={sendName}></GetName>;
+  }; */
+
   return (
     <div className="App">
-      <header className="App-header">
-        <TodoList />
-
-        </header>
+      <header></header>
+      {/*       <main className="App-body">{view()}</main> */}
+      <main className="App-body">{nameUser !== "" ? <ListOfUser nameUser={nameUser} /> : <GetName sendNameUser={sendName}></GetName>}</main>
+      <footer></footer>
     </div>
   );
-}
+};
 
 export default App;

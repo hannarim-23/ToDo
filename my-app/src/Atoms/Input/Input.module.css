@@ -1,0 +1,42 @@
+.invalid__input {
+  border: solid 2px red;
+  background-color: rgb(245, 168, 123);
+}
+
+input.invalid__input:focus {
+  border: solid 2px red;
+  background-color: rgb(245, 168, 123);
+}
+
+input:focus {
+  background: #fffac0;
+  outline: none;
+}
+
+.new__task {
+  height: 45px;
+  border-radius: 10px;
+  width: 600px;
+}
+
+.custom-checkbox__ToDo {
+}
+
+.input__change {
+  border-radius: 10px;
+
+  /*   line-height: 21px; */
+  padding-left: 10px;
+
+  border: 0px;
+  margin-right: 5px;
+  min-width: 100px;
+
+  width: 100%;
+  height: 35px;
+  /*   margin-bottom: 5px; */
+}
+
+input.input__change:focus {
+  background-color: rgb(252, 242, 188);
+}

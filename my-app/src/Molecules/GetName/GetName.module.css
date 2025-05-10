@@ -1,0 +1,28 @@
+.block__getName {
+  height: 300px;
+  position: absolute;
+  top: 40%;
+}
+
+.block__getName input {
+  height: 41px;
+  border-radius: 10px;
+  line-height: 21px;
+  padding-left: 10px;
+  margin: 10px 5px;
+  width: 200px;
+}
+
+.invalid__input {
+  border: solid 2px red;
+  background-color: rgb(245, 168, 123);
+} 
+ 
+.invalid__message {
+  color: red;
+}
+
+input.invalid__input:focus {
+  border: solid 2px red;
+  background-color: rgb(245, 168, 123);
+}
